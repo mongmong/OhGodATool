@@ -9,5 +9,6 @@ ohgodatool: ohgodatool-args.c ohgodatool-utils.c ohgodatool.c ohgodatool-common.
 
 install: all
 	cp -v ohgodatool /usr/local/bin/
+
 clean:
 	rm -f ohgodatool
