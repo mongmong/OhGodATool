@@ -135,6 +135,8 @@ int main(int argc, char **argv)
 	
 	TotalStates = ((PolarisMemClkDepTable *)(PPTblBuf + PPHdr->MemClkDepTableOffset))->NumEntries;
 	
+	if(Config.MemStateIdxProvided && Config.MemStateIdx == -1) Config.MemStateIdx = TotalStates - 1;
+	
 	if(Config.MemStateIdxProvided && TotalStates <= Config.MemStateIdx)
 	{
 		printf("Specified memory state does not exist.\n");
@@ -146,7 +148,7 @@ int main(int argc, char **argv)
 	// TODO: Add checking that offsets don't exceed table size.
 	PolarisMemClkDepRecord *MemClkRecords = ((PolarisMemClkDepTable *)(PPTblBuf + PPHdr->MemClkDepTableOffset))->Entries;
 	PolarisVoltageLookupTable *VoltageTbl = (PolarisVoltageLookupTable *)(PPTblBuf + PPHdr->VDDCLookupTableOffset);
-	
+		
 	if(Config.MemStateIdxProvided)
 	{
 		if(Config.SetMemClock)
@@ -231,6 +233,9 @@ int main(int argc, char **argv)
 	}
 	
 	TotalStates = ((PolarisCoreClkDepTable *)(PPTblBuf + PPHdr->CoreClkDepTableOffset))->NumEntries;
+	
+	if(Config.CoreStateIdxProvided && Config.CoreStateIdx == -1) Config.CoreStateIdx = TotalStates - 1;
+	
 	if(((PolarisCoreClkDepTable *)(PPTblBuf + PPHdr->CoreClkDepTableOffset))->RevisionID < 1)
 	{
 		TongaCoreClkDepRecord *CoreClkRecords = ((TongaCoreClkDepTable *)(PPTblBuf + PPHdr->CoreClkDepTableOffset))->Entries;
@@ -395,6 +400,8 @@ int main(int argc, char **argv)
 	PolarisVoltageLookupRecord *GFXVoltageStateRecords = ((PolarisVoltageLookupTable *)(PPTblBuf + PPHdr->VDDCGFXLookupTableOffset))->Entries;
 	uint32_t GFXTotalStates = ((PolarisVoltageLookupTable *)(PPTblBuf + PPHdr->VDDCGFXLookupTableOffset))->NumEntries;
 	
+	if(Config.VoltageStateIdxProvided && Config.VoltStateIdx == -1) Config.VoltStateIdx = TotalStates - 1;
+	
 	if(Config.VoltageStateIdxProvided && TotalStates <= Config.VoltStateIdx)
 	{
 		printf("Specified voltage state does not exist.\n");
@@ -402,7 +409,7 @@ int main(int argc, char **argv)
 		fclose(PPFile);
 		return(-1);
 	}
-	
+		
 	if(Config.VoltageStateIdxProvided)
 	{
 		if(Config.SetVTblVDD)

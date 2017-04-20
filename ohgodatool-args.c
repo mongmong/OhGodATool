@@ -13,7 +13,7 @@ void PrintUsage(char *BinName)
 	printf("Generic modification options:\n");
 	printf("\t--set-fanspeed <percent>\n\t--set-tdp <W>\n\t--set-tdc <W>\n\t--set-max-power <W>\n");
 	printf("\t--set-max-core-clock <Mhz>\n\t--set-max-mem-clock <Mhz>\n");
-	printf("State selection options (must be used before state modification options):\n");
+	printf("State selection options (must be used before state modification options; -1 indicates last existing state):\n");
 	printf("\t--core-state <index>\n\t--mem-state <index>\n\t--volt-state <index>\n");
 	printf("State modification options:\n");
 	printf("\t--mem-clock <Mhz>\n\t--core-clock <Mhz>\n\t--mem-vddc-idx <index>\n");
@@ -60,7 +60,7 @@ bool ParseCmdLine(ArgsObj *Args, int argc, char **argv)
 		else if(!strcmp("--mem-state", argv[i]))
 		{
 			NEXT_ARG_CHECK();
-			Args->MemStateIdx = strtoul(argv[++i], NULL, 10);
+			Args->MemStateIdx = strtol(argv[++i], NULL, 10);
 			
 			if(errno == EINVAL || errno == ERANGE)
 			{
@@ -86,7 +86,7 @@ bool ParseCmdLine(ArgsObj *Args, int argc, char **argv)
 		else if(!strcmp("--core-state", argv[i]))
 		{
 			NEXT_ARG_CHECK();
-			Args->CoreStateIdx = strtoul(argv[++i], NULL, 10);
+			Args->CoreStateIdx = strtol(argv[++i], NULL, 10);
 			
 			if(errno == EINVAL || errno == ERANGE)
 			{
@@ -190,7 +190,7 @@ bool ParseCmdLine(ArgsObj *Args, int argc, char **argv)
 		else if(!strcmp("--volt-state", argv[i]))
 		{
 			NEXT_ARG_CHECK();
-			Args->VoltStateIdx = strtoul(argv[++i], NULL, 10);
+			Args->VoltStateIdx = strtol(argv[++i], NULL, 10);
 			
 			if(errno == EINVAL || errno == ERANGE)
 			{

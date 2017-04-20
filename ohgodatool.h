@@ -14,7 +14,8 @@ typedef struct _ArgsObj
 	
 	bool ShowMemStates, ShowCoreStates, ShowVoltageStates, ShowFanspeed, ShowTemp;
 	
-	uint32_t GPUIdx, MemStateIdx, CoreStateIdx, VoltStateIdx, ReqCoreClk, ReqMemClk, ReqVDDCI;
+	int32_t MemStateIdx, CoreStateIdx, VoltStateIdx;
+	uint32_t GPUIdx, ReqCoreClk, ReqMemClk, ReqVDDCI;
 	uint32_t ReqMVDD, ReqCoreVoltTblIdx, ReqMemVoltTblIdx, ReqVoltTblVDDC, ReqFanspeedPercentage;
 	uint32_t ReqTDP, ReqTDC, ReqMaxPower, ReqMaxCoreClk, ReqMaxMemClk;
 	
