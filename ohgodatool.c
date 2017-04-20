@@ -236,6 +236,14 @@ int main(int argc, char **argv)
 	
 	if(Config.CoreStateIdxProvided && Config.CoreStateIdx == -1) Config.CoreStateIdx = TotalStates - 1;
 	
+	if(Config.CoreStateIdxProvided && TotalStates <= Config.CoreStateIdx)
+	{
+		printf("Specified core state does not exist.\n");
+		free(PPTblBuf);
+		fclose(PPFile);
+		return(-1);
+	}
+	
 	if(((PolarisCoreClkDepTable *)(PPTblBuf + PPHdr->CoreClkDepTableOffset))->RevisionID < 1)
 	{
 		TongaCoreClkDepRecord *CoreClkRecords = ((TongaCoreClkDepTable *)(PPTblBuf + PPHdr->CoreClkDepTableOffset))->Entries;
