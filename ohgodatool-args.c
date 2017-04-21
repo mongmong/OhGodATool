@@ -24,7 +24,7 @@ void PrintUsage(char *BinName)
 	printf("\t--show-fanspeed\n\t--show-temp\n");
 }
 
-#define NEXT_ARG_CHECK() do { if(i == (argc - 1)) { printf("Argument \"%s\" requires a parameter.\n"); return(false); } } while(0)
+#define NEXT_ARG_CHECK() do { if(i == (argc - 1)) { printf("Argument \"%s\" requires a parameter.\n", argv[i]); return(false); } } while(0)
 
 bool ParseCmdLine(ArgsObj *Args, int argc, char **argv)
 {
