@@ -4,7 +4,7 @@ LDFLAGS=-lm
 
 all: ohgodatool
 
-ohgodatool: ohgodatool-args.c ohgodatool-utils.c ohgodatool.c ohgodatool-common.h ohgodatool.h vbios-tables.h
+ohgodatool: ohgodatool-args.c ohgodatool-utils.c ohgodatool.c
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 install: all
