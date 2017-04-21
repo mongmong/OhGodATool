@@ -120,7 +120,7 @@ int main(int argc, char **argv)
 	
 	if(BytesRead != PPTblSize)
 	{
-		printf("Unable to read entire PowerPlay table. (read %zu, size was %zu)\n", BytesRead, PPTblSize);
+		printf("Unable to read entire PowerPlay table. (read %u, size was %u)\n", (unsigned)BytesRead, (unsigned)PPTblSize);
 		free(PPTblBuf);
 		fclose(PPFile);
 		return(-1);
