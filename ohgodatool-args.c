@@ -22,6 +22,7 @@ void PrintUsage(char *BinName)
 	printf("Display options (shows the selected states, or if none selected, all states):\n");
 	printf("\t--show-mem\n\t--show-core\n\t--show-voltage\n");
 	printf("\t--show-fanspeed\n\t--show-temp\n");
+	printf("\t--show-yaml\n");
 }
 
 #define NEXT_ARG_CHECK() do { if(i == (argc - 1)) { printf("Argument \"%s\" requires a parameter.\n", argv[i]); return(false); } } while(0)
@@ -245,6 +246,10 @@ bool ParseCmdLine(ArgsObj *Args, int argc, char **argv)
 		else if(!strcmp("--show-temp", argv[i]))
 		{
 			Args->ShowTemp = true;
+		}
+		else if(!strcmp("--show-yaml", argv[i]))
+		{
+			Args->ShowYaml = true;
 		}
 		else if(!strcmp("--set-tdp", argv[i]))
 		{

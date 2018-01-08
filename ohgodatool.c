@@ -204,7 +204,7 @@ int main(int argc, char **argv)
 				}
 				
 				printf("Memory state %d:\n", i);
-				printf("\tVDDC: %d\n", VoltageTbl->Entries[i].VDD);
+				printf("\tVDDC: %d (voltage table entry %d)\n", VoltageTbl->Entries[MemClkRecords[i].VDDC].VDD, MemClkRecords[i].VDDC);
 				printf("\tVDDCI: %d\n", MemClkRecords[i].VDDCI);
 				printf("\tVDDC GFX offset: %d\n", MemClkRecords[i].VDDCGFXOffset);
 				printf("\tMVDD: %d\n", MemClkRecords[i].MVDD);
@@ -221,7 +221,10 @@ int main(int argc, char **argv)
 				return(-1);
 			}
 			
+			if (Config.ShowYaml)
+			
 			printf("Memory state %d:\n", Config.MemStateIdx);
+			printf("\tVDDC: %d (voltage table entry %d)\n", VoltageTbl->Entries[MemClkRecords[Config.MemStateIdx].VDDC].VDD, MemClkRecords[Config.MemStateIdx].VDDC);
 			printf("\tVDDC: %d\n", VoltageTbl->Entries[Config.MemStateIdx].VDD);
 			printf("\tVDDCI: %d\n", MemClkRecords[Config.MemStateIdx].VDDCI);
 			printf("\tVDDC offset: %d\n", MemClkRecords[Config.MemStateIdx].VDDCGFXOffset);
@@ -434,12 +437,12 @@ int main(int argc, char **argv)
 		{
 			for(int i = 0; i < TotalStates; ++i)
 			{
-				printf("Voltage state %d: \n\tVDD = %d\n\tCACLow = %d\n\tCACMid = %d\n\tCACHigh = %d\n", i, VoltageStateRecords[i].VDD, VoltageStateRecords[i].CACLow, VoltageStateRecords[i].CACMid, VoltageStateRecords[i].CACHigh);
+				printf("Voltage state %d: \n\tVDD: %d\n\tCACLow: %d\n\tCACMid: %d\n\tCACHigh: %d\n", i, VoltageStateRecords[i].VDD, VoltageStateRecords[i].CACLow, VoltageStateRecords[i].CACMid, VoltageStateRecords[i].CACHigh);
 			}			
 		}
 		else
 		{
-			printf("Voltage state %d: \n\tVDD = %d\n\tCACLow = %d\n\tCACMid = %d\n\tCACHigh = %d\n", Config.VoltageStateIdxProvided, VoltageStateRecords[Config.VoltStateIdx].VDD, VoltageStateRecords[Config.VoltStateIdx].CACLow, VoltageStateRecords[Config.VoltStateIdx].CACMid, VoltageStateRecords[Config.VoltStateIdx].CACHigh);
+			printf("Voltage state %d: \n\tVDD: %d\n\tCACLow: %d\n\tCACMid: %d\n\tCACHigh: %d\n", Config.VoltStateIdx, VoltageStateRecords[Config.VoltStateIdx].VDD, VoltageStateRecords[Config.VoltStateIdx].CACLow, VoltageStateRecords[Config.VoltStateIdx].CACMid, VoltageStateRecords[Config.VoltStateIdx].CACHigh);
 		}
 		
 		putchar('\n');
